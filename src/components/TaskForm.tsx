@@ -1,7 +1,13 @@
-// TaskForm Component - For adding new tasks
-const TaskForm = ({ addTask }: { addTask: (task: Omit<Task, 'id'>) => void }) => {
+import { useState } from 'react';
+import type { Task } from '../types/Task';
+
+interface TaskFormProps {
+  addTask: (task: Omit<Task, 'id'>) => void;
+}
+
+const TaskForm = ({ addTask }: TaskFormProps) => {
   const [title, setTitle] = useState('');
-  const [priority, setPriority] = useState<Task['priority']>('medium');
+  const [priority, setPriority] = useState<Task['priority']>('Medium');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,7 +18,7 @@ const TaskForm = ({ addTask }: { addTask: (task: Omit<Task, 'id'>) => void }) =>
         priority
       });
       setTitle('');
-      setPriority('medium');
+      setPriority('Medium');
     }
   };
 
@@ -50,3 +56,5 @@ const TaskForm = ({ addTask }: { addTask: (task: Omit<Task, 'id'>) => void }) =>
     </div>
   );
 };
+
+export default TaskForm;
